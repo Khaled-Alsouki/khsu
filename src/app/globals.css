@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
+  }
+
+  /* منع تحديد النص أثناء اللعب السريع */
+  button {
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  /* الأرقام والتسلسلات تبقى من اليسار لليمين حتى داخل صفحة RTL */
+  .ltr-seq {
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+
+  @keyframes answer-correct {
+    0% {
+      transform: scale(1);
+    }
+    45% {
+      transform: scale(1.045);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes score-bump {
+    0% {
+      transform: translateY(3px);
+      opacity: 0.65;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes record-celebration {
+    0% {
+      transform: scale(0.96);
+      text-shadow: 0 0 0 rgb(251 191 36 / 0);
+    }
+    60% {
+      transform: scale(1.035);
+      text-shadow: 0 0 20px rgb(251 191 36 / 0.45);
+    }
+    100% {
+      transform: scale(1);
+      text-shadow: 0 0 0 rgb(251 191 36 / 0);
+    }
+  }
+
+  .answer-correct {
+    animation: answer-correct 420ms ease-out;
+  }
+  .score-bump {
+    animation: score-bump 220ms ease-out;
+  }
+  .record-celebration {
+    animation: record-celebration 650ms ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .answer-correct,
+    .score-bump,
+    .record-celebration {
+      animation: none;
+    }
+  }
+}

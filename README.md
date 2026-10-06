@@ -1,0 +1,2 @@
+# gm
+funny game
